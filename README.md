@@ -8,7 +8,7 @@
 解决了FTP上传/下载文件时，文件名有中文，有特殊字符时无法上传/下载的问题。
 
 libcurl编译方式：见csdn，链接如下：
-http://t.csdnimg.cn/jo3AY
+[http://t.csdnimg.cn/jo3AY](https://blog.csdn.net/yh_secret/article/details/140642789?fromshare=blogdetail&sharetype=blogdetail&sharerId=140642789&sharerefer=PC&sharesource=yh_secret&sharefrom=from_link)
 
 代码使用样例：
 见FTP.cpp
