@@ -219,30 +219,42 @@ bool FtpManage::GetfilenameFromftp(const std::string filePath)
 {
 	SetURL();
 	std::string path = Ftp_ip + UrlEncode(filePath);
-	std::string fileName;	// 文件名列表保存位置
-	if (curl)
-	{
-		curl_easy_setopt(curl, CURLOPT_URL, path.c_str());	// 设置访问URL
-		curl_easy_setopt(curl, CURLOPT_DIRLISTONLY, 1L);	// 设置只返回文件
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &fileName);	// 设置只获取文件名列表
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);	// 设置get的回调函数
-		if (curl_easy_perform(curl) == CURLE_OK)				//执行任务
-		{
+	std::string fileList; // 文件列表保存位置
+	if (curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, path.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &fileList);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "MLSD"); // 使用MLSD命令
+
+		if (curl_easy_perform(curl) == CURLE_OK) {
 			fNs.clear();
-			size_t startPos = 0, endPos = 0;
-			while ((endPos = fileName.find('\n', startPos)) != std::string::npos )
-			{
-				std::string name = fileName.substr(startPos, endPos - startPos-1);
-				fNs.emplace_back(name);
-				startPos = endPos + 1;
+			dNs.clear();
+			std::istringstream iss(fileList);
+			std::string line;
+			while (std::getline(iss, line)) {
+				// 移除行尾可能存在的 "\r"
+				if (!line.empty() && line.back() == '\r') {
+					line.pop_back();
+				}
+
+				size_t namePos = line.find_last_of(";") + 2; // 文件名在最后一个分号后
+				std::string name = line.substr(namePos);
+				std::string type = line.substr(0, line.find(";"));
+
+				if (type.find("type=dir") != std::string::npos) {
+					// 这是一个目录
+					dNs.emplace_back(name);
+				} else if (type.find("type=file") != std::string::npos) {
+					// 这是一个文件
+					fNs.emplace_back(name);
+				}
 			}
 		}
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 	curl_easy_cleanup(curl);
+	curl = nullptr;
 	return true;
 }
 

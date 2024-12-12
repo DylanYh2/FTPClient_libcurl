@@ -5,81 +5,81 @@
 #include<vector>
 using namespace std;
 
-class FtpManage
-{
+class FtpManage {
 public:
-	FtpManage();
-	FtpManage(const string user, const string password, const string id);
-	~FtpManage();
-	
-	/*
-	*@Upload: ÏòFtp·şÎñÆ÷ÉÏ´«ÎÄ¼ş
-	* @localFilePath:ËùÉÏ´«µÄÎÄ¼ş£¨¾«È·µ½ÎÄ¼şÃû£©£¬Èç"D:/ggbond/123.jpg"
-	* @remoteDirectory:ÉÏ´«ÖÁFtpµÄÄ¿Â¼£¬Èç"/shjr/"
-	* @remark:½«123.jpgÉÏ´«µ½Ftp·şÎñÆ÷µÄ"/shjr/"Ä¿Â¼ÏÂ,
-	*/
-	bool Upload(const char* localFilePath, const char* remoteDirectory);
+    FtpManage(const string user, const string password, const string id);
 
-	/*
-	* @Download:´ÓFtp·şÎñÆ÷ÏÂÔØÌØ¶¨ÎÄ¼ş
-	* @remoteFilePath:ËùÏÂÔØµÄÎÄ¼ş£¨¾«È·µ½ÎÄ¼şÃû£©Èç"/shjr/333.jpg"
-	* @localDirectory:±£´æÖÁ±¾µØÄ¿Â¼,Èç"D:/ggbond/"
-	* @remark:½«FTp·şÎñÆ÷/shjrÄ¿Â¼ÏÂµÄ333.jpgÏÂÔØµ½±¾µØD:/ggbondÄ¿Â¼
-	*/
-	bool DownloadFile(const char* remoteFilePath, const char* localDirectory);
+    ~FtpManage();
 
-	/*
-	* @DownloadAllFiles:´ÓFtpÄ³¸öÎÄ¼ş¼ĞÀïÃæÏÂÔØËùÓĞÎÄ¼ş
-	* @remoteFilePath:ËùÏÂÔØµÄÎÄ¼ş¼ĞÃû³Æ£¬Èç"/shjr/"
-	* @localDirectory:±£´æÖÁ±¾µØÄ¿Â¼,Èç"D:/ggbond/"
-	* @remark:½«FTp·şÎñÆ÷/shjr/Ä¿Â¼ÀïÃæÏÂÔØËùÓĞÎÄ¼şµ½±¾µØD:/ggbond/Ä¿Â¼
-	*/
-	bool DownloadAllFiles(const char* remoteFilePath, const char* localDirectory);
-	
-	/*
-	* @Createdir£º´´½¨ÎÄ¼ş¼Ğ
-	* @directoryname£ºÎÄ¼ş¼ĞÃû³Æ£¬¿É°üº¬ÉÏ¼¶Ä¿Â¼Ãû£¬ÒªÒÔ¡°/¡±½áÎ²ÒÔ±íÊ¾Ä¿Â¼
-	* ±ÈÈç£º"/ggbond/"
-	*/
-	bool Createdir(const char* directoryname);
+    /**
+    * @Upload: å‘FtpæœåŠ¡å™¨ä¸Šä¼ æ–‡ä»¶
+    * @localFilePath:æ‰€ä¸Šä¼ çš„æ–‡ä»¶ï¼ˆç²¾ç¡®åˆ°æ–‡ä»¶åï¼‰ï¼Œå¦‚"D:/ggbond/123.jpg"
+    * @remoteDirectory:ä¸Šä¼ è‡³Ftpçš„ç›®å½•ï¼Œå¦‚"/shjr/"
+    * @remark:å°†123.jpgä¸Šä¼ åˆ°FtpæœåŠ¡å™¨çš„"/shjr/"ç›®å½•ä¸‹,
+    */
+    bool Upload(const char *localFilePath, const char *remoteDirectory);
 
-	/*
-	* @GetFilesName£ºÌá¹©»ñÈ¡FTPÎÄ¼ş¼ĞÄÚËùÓĞÎÄ¼şÃûµÄ½Ó¿Ú
-	* @filepath£ºÎÄ¼ş¼ĞÃû³Æ£¬¿É°üº¬ÉÏ¼¶Ä¿Â¼Ãû£¬ÒªÒÔ¡°/¡±½áÎ²ÒÔ±íÊ¾Ä¿Â¼
-	* ±ÈÈç£º"/ggbond/"
-	*/
-	const std::vector<std::string>& GetFilesName(const string filepath);
-	
+    /**
+    * @Download:ä»FtpæœåŠ¡å™¨ä¸‹è½½ç‰¹å®šæ–‡ä»¶
+    * @remoteFilePath:æ‰€ä¸‹è½½çš„æ–‡ä»¶ï¼ˆç²¾ç¡®åˆ°æ–‡ä»¶åï¼‰å¦‚"/shjr/333.jpg"
+    * @localDirectory:ä¿å­˜è‡³æœ¬åœ°ç›®å½•,å¦‚"D:/ggbond/"
+    * @remark:å°†FTpæœåŠ¡å™¨/shjrç›®å½•ä¸‹çš„333.jpgä¸‹è½½åˆ°æœ¬åœ°D:/ggbondç›®å½•
+    */
+    bool DownloadFile(const char *remoteFilePath, const char *localDirectory);
+
+    /**
+    * @DownloadAllFiles:ä»FtpæŸä¸ªæ–‡ä»¶å¤¹é‡Œé¢ä¸‹è½½æ‰€æœ‰æ–‡ä»¶
+    * @remoteFilePath:æ‰€ä¸‹è½½çš„æ–‡ä»¶å¤¹åç§°ï¼Œå¦‚"/shjr/"
+    * @localDirectory:ä¿å­˜è‡³æœ¬åœ°ç›®å½•,å¦‚"D:/ggbond/"
+    * @remark:å°†FTpæœåŠ¡å™¨/shjr/ç›®å½•é‡Œé¢ä¸‹è½½æ‰€æœ‰æ–‡ä»¶åˆ°æœ¬åœ°D:/ggbond/ç›®å½•
+    */
+    bool DownloadAllFiles(const char *remoteFilePath, const char *localDirectory);
+
+    /**
+    * @Createdirï¼šåˆ›å»ºæ–‡ä»¶å¤¹
+    * @directorynameï¼šæ–‡ä»¶å¤¹åç§°ï¼Œå¯åŒ…å«ä¸Šçº§ç›®å½•åï¼Œè¦ä»¥â€œ/â€ç»“å°¾ä»¥è¡¨ç¤ºç›®å½•
+    * æ¯”å¦‚ï¼š"/ggbond/"
+    */
+    bool Createdir(const char *directoryname);
+
+    /**
+    * @GetFilesNameï¼šæä¾›è·å–FTPæ–‡ä»¶å¤¹å†…æ‰€æœ‰æ–‡ä»¶åçš„æ¥å£
+    * @filepathï¼šæ–‡ä»¶å¤¹åç§°ï¼Œå¯åŒ…å«ä¸Šçº§ç›®å½•åï¼Œè¦ä»¥â€œ/â€ç»“å°¾ä»¥è¡¨ç¤ºç›®å½•
+    * æ¯”å¦‚ï¼š"/ggbond/"
+    */
+    const std::vector<std::string> &GetFilesName(const string filepath);
+
 private:
-	/*
-	* @SetURL£º³õÊ¼»¯URL
-	*/
-	void SetURL();
+    /**
+    * @SetURLï¼šåˆå§‹åŒ–URL
+    */
+    void SetURL();
 
-	/*
-	* @UrlEncode£º°Ñº¬ÓĞÌØÊâ·ûºÅµÄÎÄ¼şÃû½øĞĞURL±àÂë
-	* @value£ºÎÄ¼şÃû
-	* @"kunkunboy##  123"ÕâÖÖĞÎÊ½ÊÇÎŞ·¨´«ÈëcurlµÄ£¬ĞèÒª×ª»»Ò»ÏÂ
-	*/
-	std::string UrlEncode(const std::string& value);
+    /**
+    * @UrlEncodeï¼šæŠŠå«æœ‰ç‰¹æ®Šç¬¦å·çš„æ–‡ä»¶åè¿›è¡ŒURLç¼–ç 
+    * @valueï¼šæ–‡ä»¶å
+    * @"kunkunboy##  123"è¿™ç§å½¢å¼æ˜¯æ— æ³•ä¼ å…¥curlçš„ï¼Œéœ€è¦è½¬æ¢ä¸€ä¸‹
+    */
+    std::string UrlEncode(const std::string &value);
 
-	/*
-	* @GEtFileNameFromPath£º´ÓÂ·¾¶ÖĞÌáÈ¡ÎÄ¼şÃû²¢·µ»Ø
-	* @filePath£ºÎÄ¼şÍêÕûÂ·¾¶
-	* @"D:/ggbond/123.jpg"->123.jpg
-	*/
-	std::string GetFileNameFromPath(const std::string& filePath);
+    /**
+    * @GEtFileNameFromPathï¼šä»è·¯å¾„ä¸­æå–æ–‡ä»¶åå¹¶è¿”å›
+    * @filePathï¼šæ–‡ä»¶å®Œæ•´è·¯å¾„
+    * @"D:/ggbond/123.jpg"->123.jpg
+    */
+    std::string GetFileNameFromPath(const std::string &filePath);
 
-	/*
-	* @GetfilenameFromftp:»ñµÃFTP·şÎñÆ÷ÉÏÄ³¸öÎÄ¼ş¼ĞÄÚËùÓĞÎÄ¼şÃû,Èç¹ûÎÄ¼ş¼ĞÄÚ¼ÈÓĞÎÄ¼şÓÖÓĞÎÄ¼ş¼Ğ£¬ÔòÖ»»áÏÔÊ¾ÎÄ¼ş
-	* @directoryname:ÎÄ¼ş¼ĞÃû³Æ£¬¿É°üº¬ÉÏ¼¶Ä¿Â¼Ãû£¬ÒªÒÔ¡°/¡±½áÎ²ÒÔ±íÊ¾Ä¿Â¼
-	*/
-	bool GetfilenameFromftp(const string directoryname);
+    /**
+    * @GetfilenameFromftp:è·å¾—FTPæœåŠ¡å™¨ä¸ŠæŸä¸ªæ–‡ä»¶å¤¹å†…æ‰€æœ‰æ–‡ä»¶å,å¦‚æœæ–‡ä»¶å¤¹å†…æ—¢æœ‰æ–‡ä»¶åˆæœ‰æ–‡ä»¶å¤¹ï¼Œåˆ™åªä¼šæ˜¾ç¤ºæ–‡ä»¶
+    * @directoryname:æ–‡ä»¶å¤¹åç§°ï¼Œå¯åŒ…å«ä¸Šçº§ç›®å½•åï¼Œè¦ä»¥â€œ/â€ç»“å°¾ä»¥è¡¨ç¤ºç›®å½•
+    */
+    bool GetfilenameFromftp(const string directoryname);
+
 private:
-	std::string Ftp_ip;									//Ftp·şÎñÆ÷µØÖ·
-	std::string User, Password;							//µÇÂ¼ÓÃ»§Ãû¼°ÃÜÂë
-	std::string _URL;
-	std::vector<std::string> fNs;						//ÓÃÓÚ¼ÇÂ¼È«²¿ÎÄ¼şÃû
-	CURL* curl;
+    std::string Ftp_ip; //FtpæœåŠ¡å™¨åœ°å€
+    std::string User, Password; //ç™»å½•ç”¨æˆ·ååŠå¯†ç 
+    std::string _URL;
+    std::vector<std::string> fNs; //ç”¨äºè®°å½•å…¨éƒ¨æ–‡ä»¶å
+    std::vector<std::string> dNs; //ç”¨äºè®°å½•å…¨éƒ¨æ–‡ä»¶å¤¹å
+    CURL *curl;
 };
-
